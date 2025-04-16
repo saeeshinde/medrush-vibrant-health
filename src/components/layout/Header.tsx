@@ -1,6 +1,6 @@
 
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { 
   Search, ShoppingCart, User, Menu, X, Bell, Heart, 
   Upload, Phone, HeartPulse 
@@ -11,6 +11,11 @@ import { Input } from '@/components/ui/input';
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [cartCount, setCartCount] = useState(0);
+  const location = useLocation();
+
+  const isActive = (path: string) => {
+    return location.pathname === path ? "text-medrush-blue font-medium" : "";
+  };
 
   return (
     <header className="sticky top-0 z-50 bg-white shadow-sm">
@@ -66,10 +71,10 @@ const Header = () => {
         {/* Navigation */}
         <nav className="hidden md:flex items-center justify-between py-3">
           <div className="flex items-center space-x-8">
-            <Link to="/medicines" className="nav-link font-medium">Medicines</Link>
-            <Link to="/healthcare" className="nav-link font-medium">Healthcare</Link>
-            <Link to="/consult" className="nav-link font-medium">Consult Doctor</Link>
-            <Link to="/lab-tests" className="nav-link font-medium">Lab Tests</Link>
+            <Link to="/medicines" className={`nav-link font-medium ${isActive('/medicines')}`}>Medicines</Link>
+            <Link to="/healthcare" className={`nav-link font-medium ${isActive('/healthcare')}`}>Healthcare</Link>
+            <Link to="/consult" className={`nav-link font-medium ${isActive('/consult')}`}>Consult Doctor</Link>
+            <Link to="/lab-tests" className={`nav-link font-medium ${isActive('/lab-tests')}`}>Lab Tests</Link>
           </div>
           
           <Link to="/emergency" className="flex items-center">
@@ -98,28 +103,28 @@ const Header = () => {
             <div className="space-y-3">
               <Link 
                 to="/medicines" 
-                className="flex items-center py-2 border-b border-gray-100"
+                className={`flex items-center py-2 border-b border-gray-100 ${isActive('/medicines')}`}
                 onClick={() => setIsMenuOpen(false)}
               >
                 Medicines
               </Link>
               <Link 
                 to="/healthcare" 
-                className="flex items-center py-2 border-b border-gray-100"
+                className={`flex items-center py-2 border-b border-gray-100 ${isActive('/healthcare')}`}
                 onClick={() => setIsMenuOpen(false)}
               >
                 Healthcare
               </Link>
               <Link 
                 to="/consult" 
-                className="flex items-center py-2 border-b border-gray-100"
+                className={`flex items-center py-2 border-b border-gray-100 ${isActive('/consult')}`}
                 onClick={() => setIsMenuOpen(false)}
               >
                 Consult Doctor
               </Link>
               <Link 
                 to="/lab-tests" 
-                className="flex items-center py-2 border-b border-gray-100"
+                className={`flex items-center py-2 border-b border-gray-100 ${isActive('/lab-tests')}`}
                 onClick={() => setIsMenuOpen(false)}
               >
                 Lab Tests

@@ -10,6 +10,9 @@ import ProductListing from "./pages/ProductListing";
 import EmergencyPage from "./pages/EmergencyPage";
 import UploadPrescription from "./pages/UploadPrescription";
 import NotFound from "./pages/NotFound";
+import Healthcare from "./pages/Healthcare";
+import ConsultDoctor from "./pages/ConsultDoctor";
+import LabTest from "./pages/LabTest";
 
 const queryClient = new QueryClient();
 
@@ -25,6 +28,9 @@ const App = () => (
             <Route path="/medicines" element={<ProductListing />} />
             <Route path="/emergency" element={<EmergencyPage />} />
             <Route path="/upload" element={<UploadPrescription />} />
+            <Route path="/healthcare" element={<Healthcare />} />
+            <Route path="/consult" element={<ConsultDoctor />} />
+            <Route path="/lab-tests" element={<LabTest />} />
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>
