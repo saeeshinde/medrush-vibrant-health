@@ -10,7 +10,7 @@ import {
   FormItem,
   FormLabel,
   FormMessage
-} from "@/components/ui/";
+} from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Step } from "@/components/ui/step";
 import { Input } from "@/components/ui/input";
@@ -27,7 +27,7 @@ import {
   Heart,
   Brain,
   Baby,
-  Lungs
+  Activity
 } from "lucide-react";
 import { useForm } from "react-hook-form";
 
@@ -74,7 +74,7 @@ const specialists = [
     reviews: 87,
     image: "/placeholder.svg",
     availability: "Tomorrow",
-    icon: <Lungs className="text-green-500" />
+    icon: <Activity className="text-green-500" />
   }
 ];
 

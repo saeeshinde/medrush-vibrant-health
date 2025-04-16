@@ -10,7 +10,7 @@ import {
   TableCell,
   Button,
   Input,
-} from "@/components/ui/";
+} from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   TestTube,
