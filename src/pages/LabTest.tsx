@@ -1,16 +1,21 @@
+
 import { useState } from "react";
 import { 
+  Button
+} from "@/components/ui/button";
+import { 
   Card, 
-  CardContent,
+  CardContent
+} from "@/components/ui/card";
+import {
   Table,
   TableHeader,
   TableRow,
   TableHead,
   TableBody,
-  TableCell,
-  Button,
-  Input,
-} from "@/components/ui/button";
+  TableCell
+} from "@/components/ui/table";
+import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import {
   TestTube,

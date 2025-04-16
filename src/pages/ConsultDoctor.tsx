@@ -1,8 +1,13 @@
+
 import { useState } from "react";
 import { 
-  Button,
+  Button
+} from "@/components/ui/button";
+import { 
   Card, 
-  CardContent,
+  CardContent 
+} from "@/components/ui/card";
+import { 
   Form,
   FormControl,
   FormDescription,
@@ -10,7 +15,7 @@ import {
   FormItem,
   FormLabel,
   FormMessage
-} from "@/components/ui/button";
+} from "@/components/ui/form";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Step } from "@/components/ui/step";
 import { Input } from "@/components/ui/input";
