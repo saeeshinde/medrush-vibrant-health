@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { 
-  Filter, X, Grid3X3, List, ArrowDownAZ, ArrowZA, Heart, ShoppingCart, Clock, Star, ChevronLeft, ChevronRight
+  Filter, X, Grid3X3, List, ArrowDownAZ, ArrowUpZ, Heart, ShoppingCart, Clock, Star, ChevronLeft, ChevronRight
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -104,7 +104,7 @@ const ProductListing = () => {
                 <SelectItem value="price-high">Price: High to Low</SelectItem>
                 <SelectItem value="rating">Highest Rated</SelectItem>
                 <SelectItem value="az"><div className="flex items-center"><ArrowDownAZ size={14} className="mr-2" /> A to Z</div></SelectItem>
-                <SelectItem value="za"><div className="flex items-center"><ArrowZA size={14} className="mr-2" /> Z to A</div></SelectItem>
+                <SelectItem value="za"><div className="flex items-center"><ArrowUpZ size={14} className="mr-2" /> Z to A</div></SelectItem>
               </SelectContent>
             </Select>
           </div>
