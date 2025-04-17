@@ -87,91 +87,95 @@ const EmergencyPage = () => {
               <p className="text-gray-600">4 pharmacies found within 5 miles of your location</p>
             </div>
             
-            <Tabs 
-              value={activeTab} 
-              onValueChange={setActiveTab}
-              className="w-full md:w-auto"
-            >
-              <TabsList className="grid w-full grid-cols-2">
-                <TabsTrigger value="list">List View</TabsTrigger>
-                <TabsTrigger value="map">Map View</TabsTrigger>
-              </TabsList>
-            </Tabs>
+            <div className="w-full md:w-auto">
+              <Tabs 
+                value={activeTab} 
+                onValueChange={setActiveTab}
+                className="w-full"
+              >
+                <TabsList className="grid w-full grid-cols-2">
+                  <TabsTrigger value="list">List View</TabsTrigger>
+                  <TabsTrigger value="map">Map View</TabsTrigger>
+                </TabsList>
+              </Tabs>
+            </div>
           </div>
         </div>
         
         <div className="mb-8">
-          <TabsContent value="list" className="m-0">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {pharmacies.map((pharmacy) => (
-                <div key={pharmacy.id} className="bg-white rounded-lg shadow-md overflow-hidden border">
-                  <div className="h-48 overflow-hidden">
-                    <img 
-                      src={pharmacy.img} 
-                      alt={pharmacy.name} 
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  
-                  <div className="p-4">
-                    <div className="flex justify-between items-start mb-2">
-                      <h3 className="font-semibold text-lg">{pharmacy.name}</h3>
-                      <span className="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-medium">
-                        {pharmacy.status}
-                      </span>
+          <Tabs value={activeTab} onValueChange={setActiveTab}>
+            <TabsContent value="list" className="m-0">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {pharmacies.map((pharmacy) => (
+                  <div key={pharmacy.id} className="bg-white rounded-lg shadow-md overflow-hidden border">
+                    <div className="h-48 overflow-hidden">
+                      <img 
+                        src={pharmacy.img} 
+                        alt={pharmacy.name} 
+                        className="w-full h-full object-cover"
+                      />
                     </div>
                     
-                    <div className="flex items-start mb-1">
-                      <MapPin size={16} className="text-gray-500 mt-1 mr-1 flex-shrink-0" />
-                      <span className="text-gray-600 text-sm">{pharmacy.address}</span>
-                    </div>
-                    
-                    <div className="flex items-center justify-between mb-3">
-                      <div className="flex items-center">
-                        <Navigation size={14} className="text-blue-500 mr-1" />
-                        <span className="text-sm">{pharmacy.distance}</span>
+                    <div className="p-4">
+                      <div className="flex justify-between items-start mb-2">
+                        <h3 className="font-semibold text-lg">{pharmacy.name}</h3>
+                        <span className="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-medium">
+                          {pharmacy.status}
+                        </span>
                       </div>
                       
-                      <div className="flex items-center">
-                        <Star size={14} className="text-yellow-400 fill-yellow-400 mr-1" />
-                        <span className="text-sm">{pharmacy.rating}</span>
+                      <div className="flex items-start mb-1">
+                        <MapPin size={16} className="text-gray-500 mt-1 mr-1 flex-shrink-0" />
+                        <span className="text-gray-600 text-sm">{pharmacy.address}</span>
                       </div>
                       
-                      <div className="flex items-center">
-                        <Clock size={14} className="text-gray-500 mr-1" />
-                        <span className="text-sm">{pharmacy.waitTime}</span>
+                      <div className="flex items-center justify-between mb-3">
+                        <div className="flex items-center">
+                          <Navigation size={14} className="text-blue-500 mr-1" />
+                          <span className="text-sm">{pharmacy.distance}</span>
+                        </div>
+                        
+                        <div className="flex items-center">
+                          <Star size={14} className="text-yellow-400 fill-yellow-400 mr-1" />
+                          <span className="text-sm">{pharmacy.rating}</span>
+                        </div>
+                        
+                        <div className="flex items-center">
+                          <Clock size={14} className="text-gray-500 mr-1" />
+                          <span className="text-sm">{pharmacy.waitTime}</span>
+                        </div>
+                      </div>
+                      
+                      <div className="flex items-center space-x-2">
+                        <a href={`tel:${pharmacy.phone}`} className="flex-1">
+                          <Button variant="outline" className="w-full">
+                            <Phone size={16} className="mr-2" /> Call
+                          </Button>
+                        </a>
+                        <a href={`https://maps.google.com/?q=${pharmacy.address}`} target="_blank" rel="noopener noreferrer" className="flex-1">
+                          <Button className="w-full bg-medrush-blue hover:bg-blue-600">
+                            <Navigation size={16} className="mr-2" /> Directions
+                          </Button>
+                        </a>
                       </div>
                     </div>
-                    
-                    <div className="flex items-center space-x-2">
-                      <a href={`tel:${pharmacy.phone}`} className="flex-1">
-                        <Button variant="outline" className="w-full">
-                          <Phone size={16} className="mr-2" /> Call
-                        </Button>
-                      </a>
-                      <a href={`https://maps.google.com/?q=${pharmacy.address}`} target="_blank" rel="noopener noreferrer" className="flex-1">
-                        <Button className="w-full bg-medrush-blue hover:bg-blue-600">
-                          <Navigation size={16} className="mr-2" /> Directions
-                        </Button>
-                      </a>
-                    </div>
                   </div>
-                </div>
-              ))}
-            </div>
-          </TabsContent>
-          
-          <TabsContent value="map" className="m-0">
-            <div className="bg-white rounded-lg shadow-md p-4 border">
-              <div className="aspect-[16/9] bg-gray-200 rounded-lg flex items-center justify-center">
-                <div className="text-center p-6">
-                  <MapPin size={48} className="mx-auto mb-4 text-gray-400" />
-                  <p className="text-gray-500 mb-2">Map View Would Display Here</p>
-                  <p className="text-sm text-gray-400">In a real application, this would show an interactive map with pharmacy locations</p>
+                ))}
+              </div>
+            </TabsContent>
+            
+            <TabsContent value="map" className="m-0">
+              <div className="bg-white rounded-lg shadow-md p-4 border">
+                <div className="aspect-[16/9] bg-gray-200 rounded-lg flex items-center justify-center">
+                  <div className="text-center p-6">
+                    <MapPin size={48} className="mx-auto mb-4 text-gray-400" />
+                    <p className="text-gray-500 mb-2">Map View Would Display Here</p>
+                    <p className="text-sm text-gray-400">In a real application, this would show an interactive map with pharmacy locations</p>
+                  </div>
                 </div>
               </div>
-            </div>
-          </TabsContent>
+            </TabsContent>
+          </Tabs>
         </div>
         
         {/* Emergency Services Info */}
