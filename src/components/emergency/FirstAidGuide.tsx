@@ -1,5 +1,4 @@
-
-import { Activity, Heart, ThermometerSnow, Bandage, Pill, Droplets } from 'lucide-react';
+import { Activity, Heart, Thermometer, Bandage, Pill, Droplets } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 
@@ -22,7 +21,7 @@ const firstAidItems = [
   },
   {
     title: 'Burns',
-    icon: <ThermometerSnow className="h-5 w-5 text-red-600" />,
+    icon: <Thermometer className="h-5 w-5 text-red-600" />,
     content: (
       <div className="space-y-2">
         <p>First-degree burns affect only the outer layer of skin, second-degree burns affect both the outer and underlying layer of skin, third-degree burns affect deeper tissues.</p>
