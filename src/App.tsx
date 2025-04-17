@@ -17,6 +17,7 @@ import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import Cart from "./pages/Cart";
 import OrderTracking from "./pages/OrderTracking";
+import Checkout from "./pages/Checkout";
 
 const queryClient = new QueryClient();
 
@@ -39,6 +40,7 @@ const App = () => (
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/track-order" element={<OrderTracking />} />
+            <Route path="/checkout" element={<Checkout />} />
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>

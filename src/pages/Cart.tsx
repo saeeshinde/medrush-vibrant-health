@@ -6,12 +6,12 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 
-// Sample cart data
+// Sample cart data with updated images
 const initialCartItems = [
   {
     id: 1,
     name: 'Paracetamol 500mg Tablets',
-    image: 'https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80',
+    image: 'https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?q=80&w=400',
     price: 5.99,
     quantity: 2,
     prescription: false
@@ -19,7 +19,7 @@ const initialCartItems = [
   {
     id: 2,
     name: 'Digital Thermometer',
-    image: 'https://images.unsplash.com/photo-1584110167227-2d99321570a3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80',
+    image: 'https://images.unsplash.com/photo-1583947215259-38e31be8751f?q=80&w=400',
     price: 12.99,
     quantity: 1,
     prescription: false
@@ -27,7 +27,7 @@ const initialCartItems = [
   {
     id: 3,
     name: 'Antibiotics (Prescription)',
-    image: 'https://images.unsplash.com/photo-1584308666999-d9e2e4a5321f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&q=80',
+    image: 'https://images.unsplash.com/photo-1550572017-edd951b55074?q=80&w=400',
     price: 24.50,
     quantity: 1,
     prescription: true
@@ -165,9 +165,11 @@ const Cart = () => {
                   </div>
                 </div>
                 
-                <Button className="w-full mt-6 bg-medrush-blue hover:bg-medrush-blue/90">
-                  Proceed to Checkout <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
+                <Link to="/checkout">
+                  <Button className="w-full mt-6 bg-medrush-blue hover:bg-medrush-blue/90">
+                    Proceed to Checkout <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </Link>
                 
                 <div className="mt-4">
                   <Link to="/medicines" className="text-medrush-blue text-sm hover:underline flex items-center justify-center">

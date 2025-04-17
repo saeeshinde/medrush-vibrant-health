@@ -55,7 +55,7 @@ const Header = () => {
               )}
             </Link>
             
-            <Link to="/account">
+            <Link to="/dashboard">
               <User size={22} className="text-medrush-dark hover:text-medrush-blue transition-colors" />
             </Link>
             
