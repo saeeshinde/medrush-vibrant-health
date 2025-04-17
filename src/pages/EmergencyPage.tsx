@@ -5,6 +5,9 @@ import {
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import EmergencyContacts from '@/components/emergency/EmergencyContacts';
+import FirstAidGuide from '@/components/emergency/FirstAidGuide';
+import NearestHospitals from '@/components/emergency/NearestHospitals';
 
 const pharmacies = [
   {
@@ -55,6 +58,7 @@ const pharmacies = [
 
 const EmergencyPage = () => {
   const [activeTab, setActiveTab] = useState('list');
+  const [activeInfoTab, setActiveInfoTab] = useState('contacts');
   
   return (
     <div>
@@ -179,6 +183,28 @@ const EmergencyPage = () => {
         </div>
         
         {/* Emergency Services Info */}
+        <h2 className="text-2xl font-bold mb-6">Emergency Resources</h2>
+        
+        <Tabs value={activeInfoTab} onValueChange={setActiveInfoTab} className="mb-8">
+          <TabsList className="w-full grid grid-cols-3">
+            <TabsTrigger value="contacts">Emergency Contacts</TabsTrigger>
+            <TabsTrigger value="firstaid">First Aid Guide</TabsTrigger>
+            <TabsTrigger value="hospitals">Nearest Hospitals</TabsTrigger>
+          </TabsList>
+          
+          <TabsContent value="contacts" className="mt-6">
+            <EmergencyContacts />
+          </TabsContent>
+          
+          <TabsContent value="firstaid" className="mt-6">
+            <FirstAidGuide />
+          </TabsContent>
+          
+          <TabsContent value="hospitals" className="mt-6">
+            <NearestHospitals />
+          </TabsContent>
+        </Tabs>
+        
         <div className="bg-white rounded-lg shadow-md p-6 border">
           <h3 className="text-xl font-semibold mb-4">Emergency Medical Services</h3>
           
@@ -191,9 +217,12 @@ const EmergencyPage = () => {
                 <div>
                   <h4 className="font-semibold mb-1">Emergency Contacts</h4>
                   <p className="text-sm text-gray-600 mb-2">Important numbers for immediate assistance</p>
-                  <a href="#" className="text-blue-600 hover:underline text-sm flex items-center">
+                  <button 
+                    onClick={() => setActiveInfoTab('contacts')}
+                    className="text-blue-600 hover:underline text-sm flex items-center"
+                  >
                     View all contacts <ArrowRight size={14} className="ml-1" />
-                  </a>
+                  </button>
                 </div>
               </div>
             </div>
@@ -206,9 +235,12 @@ const EmergencyPage = () => {
                 <div>
                   <h4 className="font-semibold mb-1">First Aid Guide</h4>
                   <p className="text-sm text-gray-600 mb-2">Basic procedures for common emergencies</p>
-                  <a href="#" className="text-green-600 hover:underline text-sm flex items-center">
+                  <button 
+                    onClick={() => setActiveInfoTab('firstaid')}
+                    className="text-green-600 hover:underline text-sm flex items-center"
+                  >
                     Learn first aid <ArrowRight size={14} className="ml-1" />
-                  </a>
+                  </button>
                 </div>
               </div>
             </div>
@@ -221,9 +253,12 @@ const EmergencyPage = () => {
                 <div>
                   <h4 className="font-semibold mb-1">Nearest Hospitals</h4>
                   <p className="text-sm text-gray-600 mb-2">Find emergency rooms near your location</p>
-                  <a href="#" className="text-purple-600 hover:underline text-sm flex items-center">
+                  <button 
+                    onClick={() => setActiveInfoTab('hospitals')}
+                    className="text-purple-600 hover:underline text-sm flex items-center"
+                  >
                     View hospitals <ArrowRight size={14} className="ml-1" />
-                  </a>
+                  </button>
                 </div>
               </div>
             </div>

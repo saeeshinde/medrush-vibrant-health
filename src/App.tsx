@@ -13,6 +13,10 @@ import NotFound from "./pages/NotFound";
 import Healthcare from "./pages/Healthcare";
 import ConsultDoctor from "./pages/ConsultDoctor";
 import LabTest from "./pages/LabTest";
+import Login from "./pages/Login";
+import Dashboard from "./pages/Dashboard";
+import Cart from "./pages/Cart";
+import OrderTracking from "./pages/OrderTracking";
 
 const queryClient = new QueryClient();
 
@@ -31,6 +35,10 @@ const App = () => (
             <Route path="/healthcare" element={<Healthcare />} />
             <Route path="/consult" element={<ConsultDoctor />} />
             <Route path="/lab-tests" element={<LabTest />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/track-order" element={<OrderTracking />} />
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>
