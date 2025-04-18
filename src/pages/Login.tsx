@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
-import { User, Lock, Mail, AlertCircle } from 'lucide-react';
+import { User, Lock, Mail, AlertCircle, Stethoscope } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import {
@@ -18,17 +18,20 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Alert, AlertDescription } from '@/components/ui/alert';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 
 // Validation schemas
 const loginSchema = z.object({
   email: z.string().email({ message: 'Please enter a valid email address' }),
   password: z.string().min(6, { message: 'Password must be at least 6 characters' }),
+  role: z.enum(['user', 'doctor'], { required_error: 'Please select a role' }),
 });
 
 const registerSchema = z.object({
   name: z.string().min(2, { message: 'Name must be at least 2 characters' }),
   email: z.string().email({ message: 'Please enter a valid email address' }),
   password: z.string().min(6, { message: 'Password must be at least 6 characters' }),
+  role: z.enum(['user', 'doctor'], { required_error: 'Please select a role' }),
 });
 
 type LoginFormValues = z.infer<typeof loginSchema>;
@@ -43,6 +46,7 @@ const Login = () => {
     defaultValues: {
       email: '',
       password: '',
+      role: 'user',
     },
   });
 
@@ -52,25 +56,58 @@ const Login = () => {
       name: '',
       email: '',
       password: '',
+      role: 'user',
     },
   });
 
   const onLoginSubmit = (data: LoginFormValues) => {
-    // Here you would handle the login logic
     console.log('Login submitted:', data);
-    // For demo purposes, simulate successful login and redirect
     setError(null);
-    // In a real app, you'd use authentication service and then redirect
-    window.location.href = '/dashboard';
+    // Redirect based on role
+    const redirectPath = data.role === 'doctor' ? '/doctor-dashboard' : '/dashboard';
+    window.location.href = redirectPath;
   };
 
   const onRegisterSubmit = (data: RegisterFormValues) => {
-    // Here you would handle the registration logic
     console.log('Registration submitted:', data);
     setError(null);
-    // In a real app, you'd register the user and then redirect or show success
     setActiveTab('login');
   };
+
+  const RoleSelector = ({ control, name }: { control: any; name: string }) => (
+    <FormField
+      control={control}
+      name={name}
+      render={({ field }) => (
+        <FormItem className="space-y-3">
+          <FormLabel>Select Role</FormLabel>
+          <FormControl>
+            <RadioGroup
+              onValueChange={field.onChange}
+              defaultValue={field.value}
+              className="flex space-x-4"
+            >
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="user" id={`${name}-user`} />
+                <label htmlFor={`${name}-user`} className="flex items-center space-x-2 cursor-pointer">
+                  <User className="h-4 w-4" />
+                  <span>Patient</span>
+                </label>
+              </div>
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="doctor" id={`${name}-doctor`} />
+                <label htmlFor={`${name}-doctor`} className="flex items-center space-x-2 cursor-pointer">
+                  <Stethoscope className="h-4 w-4" />
+                  <span>Doctor</span>
+                </label>
+              </div>
+            </RadioGroup>
+          </FormControl>
+          <FormMessage />
+        </FormItem>
+      )}
+    />
+  );
 
   return (
     <div className="container mx-auto px-4 py-12 flex flex-col items-center">
@@ -98,6 +135,8 @@ const Login = () => {
               <TabsContent value="login">
                 <Form {...loginForm}>
                   <form onSubmit={loginForm.handleSubmit(onLoginSubmit)} className="space-y-4">
+                    <RoleSelector control={loginForm.control} name="role" />
+                    
                     <FormField
                       control={loginForm.control}
                       name="email"
@@ -154,6 +193,8 @@ const Login = () => {
               <TabsContent value="register">
                 <Form {...registerForm}>
                   <form onSubmit={registerForm.handleSubmit(onRegisterSubmit)} className="space-y-4">
+                    <RoleSelector control={registerForm.control} name="role" />
+                    
                     <FormField
                       control={registerForm.control}
                       name="name"
@@ -237,3 +278,4 @@ const Login = () => {
 };
 
 export default Login;
+

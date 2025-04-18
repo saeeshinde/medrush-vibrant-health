@@ -15,6 +15,7 @@ import ConsultDoctor from "./pages/ConsultDoctor";
 import LabTest from "./pages/LabTest";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
+import DoctorDashboard from "./pages/DoctorDashboard";
 import Cart from "./pages/Cart";
 import OrderTracking from "./pages/OrderTracking";
 import Checkout from "./pages/Checkout";
@@ -38,6 +39,7 @@ const App = () => (
             <Route path="/lab-tests" element={<LabTest />} />
             <Route path="/login" element={<Login />} />
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/doctor-dashboard" element={<DoctorDashboard />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/track-order" element={<OrderTracking />} />
             <Route path="/checkout" element={<Checkout />} />
@@ -50,3 +52,4 @@ const App = () => (
 );
 
 export default App;
+
