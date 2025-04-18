@@ -1,10 +1,19 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useEffect } from "react";
-import { toast } from "sonner";
+import { useEffect, useState } from "react";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
 import Layout from "./components/layout/Layout";
 import Home from "./pages/Home";
 import ProductListing from "./pages/ProductListing";
@@ -24,20 +33,32 @@ import Checkout from "./pages/Checkout";
 const queryClient = new QueryClient();
 
 const App = () => {
-  useEffect(() => {
-    toast("Welcome to MedRush!", {
-      description: "Please sign in to access all features and personalized services.",
-      action: {
-        label: "Sign In",
-        onClick: () => window.location.href = "/login"
-      },
-      duration: 5000,
-    });
-  }, []);
+  const [showWelcomeDialog, setShowWelcomeDialog] = useState(true);
 
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
+        <Dialog open={showWelcomeDialog} onOpenChange={setShowWelcomeDialog}>
+          <DialogContent className="sm:max-w-md">
+            <DialogHeader>
+              <DialogTitle className="text-2xl">Welcome to MedRush!</DialogTitle>
+              <DialogDescription className="text-lg">
+                Please sign in to access all features and personalized services.
+              </DialogDescription>
+            </DialogHeader>
+            <div className="flex justify-end space-x-4 mt-4">
+              <Button variant="outline" onClick={() => setShowWelcomeDialog(false)}>
+                Later
+              </Button>
+              <Button onClick={() => {
+                setShowWelcomeDialog(false);
+                window.location.href = "/login";
+              }}>
+                Sign In
+              </Button>
+            </div>
+          </DialogContent>
+        </Dialog>
         <Toaster />
         <Sonner />
         <BrowserRouter>
