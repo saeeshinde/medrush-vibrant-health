@@ -5,7 +5,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
-import { Calendar, Users, ClipboardList, Settings, Video, Phone, MessageSquare, Clock, Calendar as CalendarIcon } from "lucide-react";
+import { Calendar, Users, ClipboardList, Settings, Video, Phone, MessageSquare, Clock, Calendar as CalendarIcon, User } from "lucide-react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "@/components/ui/dialog";
 import { toast } from "sonner";
 
